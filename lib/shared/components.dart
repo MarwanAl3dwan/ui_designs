@@ -96,22 +96,26 @@ class SocialButton extends StatelessWidget {
   final Function onPress;
   final IconData icon;
   final Color? iconColor;
+  final double iconSize;
   final double width;
   final double height;
   final double borderRadius;
   final double borderThikness;
   final Color borderColor;
+  final TextStyle? style;
 
   SocialButton({
     required this.text,
     required this.onPress,
     required this.icon,
     this.iconColor,
+    this.iconSize = 40,
     this.width = double.infinity,
     this.height = 58,
     this.borderRadius = 24,
     this.borderThikness = 1,
     this.borderColor = kSecondaryLightTextColor,
+    this.style,
     Key? key,
   }) : super(key: key);
 
@@ -126,8 +130,6 @@ class SocialButton extends StatelessWidget {
         onPress();
       },
       child: Container(
-        padding: const EdgeInsets.only(left: 20, top: 16, bottom: 16),
-        alignment: AlignmentDirectional.center,
         width: width,
         height: height,
         decoration: BoxDecoration(
@@ -135,32 +137,40 @@ class SocialButton extends StatelessWidget {
           borderRadius: border,
           border: borderSide,
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              size: 24,
-              color: iconColor ?? Theme.of(context).iconTheme.color,
-            ),
-            const Spacer(flex: 2),
-            Text(
-              text,
-              textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .labelLarge!
-                  .copyWith(fontSize: 16),
-            ),
-            const Spacer(flex: 3),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Stack(
+            alignment: AlignmentDirectional.center,
+            children: [
+              Positioned(
+                left: 0,
+                child: Icon(
+                  icon,
+                  size: iconSize,
+                ),
+              ),
+              // const Spacer(flex: 3),
+              Positioned(
+                child: Text(
+                  text,
+                  textAlign: TextAlign.center,
+                  style: style ??
+                      Theme.of(context)
+                          .textTheme
+                          .labelLarge!
+                          .copyWith(fontSize: 16),
+                ),
+              ),
+              // const Spacer(flex: 3),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class SButton extends StatelessWidget {
+class SocialButtonImage extends StatelessWidget {
   final String text;
   final Function onPress;
   final String image;
@@ -171,9 +181,8 @@ class SButton extends StatelessWidget {
   final Color borderColor;
   final Color color;
   final TextStyle? style;
-  final MainAxisAlignment mainAxisAlignment;
 
-  SButton({
+  SocialButtonImage({
     Key? key,
     required this.text,
     required this.onPress,
@@ -185,7 +194,6 @@ class SButton extends StatelessWidget {
     this.borderRadius = 24,
     this.borderThikness = 1,
     this.style,
-    this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
   }) : super(key: key);
 
   late final border = BorderRadius.all(Radius.circular(borderRadius));

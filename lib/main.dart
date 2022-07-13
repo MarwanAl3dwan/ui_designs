@@ -6,9 +6,7 @@ import 'shared/styles/theme.dart';
 void main() {
   runApp(const MyApp());
 }
-// Branch_1 code..
 
-// Branch_2 code..
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
