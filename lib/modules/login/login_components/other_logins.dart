@@ -10,14 +10,14 @@ class OtherLogins extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SocialButton(
+        SocialButton.icon(
           text: "Sign In With Google",
           icon: FontAwesomeIcons.google,
           // iconColor: Colors.bla,
           onPress: () {},
         ),
         const SizedBox(height: 19),
-        SocialButton(
+        SocialButton.icon(
           text: "Sign In With Apple",
           icon: FontAwesomeIcons.apple,
           onPress: () {},
