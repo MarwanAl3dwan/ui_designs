@@ -7,7 +7,7 @@ class MainScreen extends StatelessWidget {
   final Duration duration = const Duration(milliseconds: 1200);
 
   const MainScreen({Key? key}) : super(key: key);
-
+//sadasd
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
