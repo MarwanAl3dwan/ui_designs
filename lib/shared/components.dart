@@ -94,29 +94,47 @@ class PrimaryButton extends StatelessWidget {
 class SocialButton extends StatelessWidget {
   final String text;
   final Function onPress;
-  final IconData icon;
-  final Color? iconColor;
-  final double iconSize;
+  IconData? icon;
+  String? image;
+  Color? iconColor;
+  final Color backgroundColor;
+  final double size;
   final double width;
   final double height;
   final double borderRadius;
   final double borderThikness;
   final Color borderColor;
-  final TextStyle? style;
+  TextStyle? textStyle;
 
-  SocialButton({
+  SocialButton.icon({
     required this.text,
     required this.onPress,
     required this.icon,
     this.iconColor,
-    this.iconSize = 40,
+    this.backgroundColor = Colors.transparent,
+    this.size = 40,
     this.width = double.infinity,
     this.height = 58,
     this.borderRadius = 24,
     this.borderThikness = 1,
     this.borderColor = kSecondaryLightTextColor,
-    this.style,
+    this.textStyle,
     Key? key,
+  }) : super(key: key);
+
+  SocialButton.image({
+    Key? key,
+    required this.text,
+    required this.onPress,
+    required this.image,
+    this.backgroundColor = Colors.transparent,
+    this.borderColor = kSecondaryLightTextColor,
+    this.width = double.infinity,
+    this.height = 58,
+    this.size = 40,
+    this.borderRadius = 24,
+    this.borderThikness = 1,
+    this.textStyle,
   }) : super(key: key);
 
   late final border = BorderRadius.all(Radius.circular(borderRadius));
@@ -126,6 +144,7 @@ class SocialButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: border,
+      splashColor: Colors.grey,
       onTap: () {
         onPress();
       },
@@ -133,7 +152,7 @@ class SocialButton extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          color: Colors.transparent,
+          color: backgroundColor,
           borderRadius: border,
           border: borderSide,
         ),
@@ -144,94 +163,23 @@ class SocialButton extends StatelessWidget {
             children: [
               Positioned(
                 left: 0,
-                child: Icon(
-                  icon,
-                  size: iconSize,
-                ),
+                child: icon == null
+                    ? Image.asset(
+                        image!,
+                        height: size,
+                      )
+                    : Icon(
+                        icon,
+                        size: size,
+                        color: iconColor ?? kPrimaryLightTextColor,
+                      ),
               ),
               // const Spacer(flex: 3),
               Positioned(
                 child: Text(
                   text,
                   textAlign: TextAlign.center,
-                  style: style ??
-                      Theme.of(context)
-                          .textTheme
-                          .labelLarge!
-                          .copyWith(fontSize: 16),
-                ),
-              ),
-              // const Spacer(flex: 3),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class SocialButtonImage extends StatelessWidget {
-  final String text;
-  final Function onPress;
-  final String image;
-  final double width;
-  final double height;
-  final double borderRadius;
-  final double borderThikness;
-  final Color borderColor;
-  final Color color;
-  final TextStyle? style;
-
-  SocialButtonImage({
-    Key? key,
-    required this.text,
-    required this.onPress,
-    required this.image,
-    this.color = Colors.transparent,
-    this.borderColor = kSecondaryLightTextColor,
-    this.width = double.infinity,
-    this.height = 58,
-    this.borderRadius = 24,
-    this.borderThikness = 1,
-    this.style,
-  }) : super(key: key);
-
-  late final border = BorderRadius.all(Radius.circular(borderRadius));
-  late final borderSide = Border.all(color: borderColor, width: borderThikness);
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: border,
-      onTap: () {
-        onPress();
-      },
-      child: Container(
-        width: width,
-        height: height,
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(borderRadius),
-          border: borderSide,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Stack(
-            alignment: AlignmentDirectional.center,
-            children: [
-              Positioned(
-                left: 0,
-                child: Image.asset(
-                  image,
-                  height: 40,
-                ),
-              ),
-              // const Spacer(flex: 3),
-              Positioned(
-                child: Text(
-                  text,
-                  textAlign: TextAlign.center,
-                  style: style ??
+                  style: textStyle ??
                       Theme.of(context)
                           .textTheme
                           .labelLarge!

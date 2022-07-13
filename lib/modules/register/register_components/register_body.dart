@@ -36,14 +36,14 @@ class RegisterBody extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 19),
-              SocialButton(
+              SocialButton.icon(
                 text: "Sign Up With Google",
                 icon: FontAwesomeIcons.google,
                 iconColor: Colors.red,
                 onPress: () {},
               ),
               const SizedBox(height: 19),
-              SocialButton(
+              SocialButton.icon(
                 text: "Sign Up With Apple",
                 icon: FontAwesomeIcons.apple,
                 // iconColor: Colors.black,

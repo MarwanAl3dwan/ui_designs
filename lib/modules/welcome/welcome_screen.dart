@@ -65,7 +65,7 @@ class MainScreen extends StatelessWidget {
             FadeInDown(
               duration: duration,
               delay: const Duration(milliseconds: 600),
-              child: SocialButtonImage(
+              child: SocialButton.image(
                 image: 'assets/images/g.png',
                 onPress: () {},
                 text: 'Continue with Google',
@@ -80,21 +80,11 @@ class MainScreen extends StatelessWidget {
             FadeInDown(
               duration: duration,
               delay: const Duration(milliseconds: 200),
-              // child: SocialButtonImage(
-              //   image: 'assets/images/Gt.png',
-              //   onPress: () {},
-              //   text: 'Continue with GitHub',
-              // ),
-              child: SocialButton(
+              child: SocialButton.icon(
                 text: "Continue with GitHub",
-                onPress: (){},
+                onPress: () {},
                 icon: FontAwesomeIcons.github,
               ),
-              // child: SocialButton(
-              //   icon: FontAwesomeIcons.github,
-              //   onPress: () {},
-              //   text: 'Continue with Google',
-              // ),
             ),
             const SizedBox(height: 40),
           ],
