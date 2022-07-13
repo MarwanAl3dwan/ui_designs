@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'modules/login/login_screen.dart';
+import 'modules/welcome/welcome_screen.dart';
 import 'shared/styles/theme.dart';
 
 void main() {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.light,
-      home: const LoginScreen(),
+      home: const MainScreen(),
     );
   }
 }

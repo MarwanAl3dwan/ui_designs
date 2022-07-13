@@ -92,44 +92,49 @@ class PrimaryButton extends StatelessWidget {
 }
 
 class SocialButton extends StatelessWidget {
-  const SocialButton({
-    required this.text,
-    required this.onPress,
-    required this.icon,
-    this.iconColor,
-    Key? key,
-  }) : super(key: key);
-
   final String text;
   final Function onPress;
   final IconData icon;
   final Color? iconColor;
+  final double width;
+  final double height;
+  final double borderRadius;
+  final double borderThikness;
+  final Color borderColor;
 
-  final borderRadius = const BorderRadius.all(Radius.circular(24));
-  final borderSide =
-      const BorderSide(color: kSecondaryLightTextColor, width: 2);
+  SocialButton({
+    required this.text,
+    required this.onPress,
+    required this.icon,
+    this.iconColor,
+    this.width = double.infinity,
+    this.height = 58,
+    this.borderRadius = 24,
+    this.borderThikness = 1,
+    this.borderColor = kSecondaryLightTextColor,
+    Key? key,
+  }) : super(key: key);
+
+  late final border = BorderRadius.all(Radius.circular(borderRadius));
+  late final borderSide = Border.all(color: borderColor, width: borderThikness);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      borderRadius: borderRadius,
+      borderRadius: border,
       onTap: () {
         onPress();
       },
       child: Container(
         padding: const EdgeInsets.only(left: 20, top: 16, bottom: 16),
         alignment: AlignmentDirectional.center,
-        width: double.infinity,
-        height: 58,
+        width: width,
+        height: height,
         decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: borderRadius,
-            border: Border(
-              top: borderSide,
-              left: borderSide,
-              bottom: borderSide,
-              right: borderSide,
-            )),
+          color: Colors.transparent,
+          borderRadius: border,
+          border: borderSide,
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -149,6 +154,85 @@ class SocialButton extends StatelessWidget {
             ),
             const Spacer(flex: 3),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class SButton extends StatelessWidget {
+  final String text;
+  final Function onPress;
+  final String image;
+  final double width;
+  final double height;
+  final double borderRadius;
+  final double borderThikness;
+  final Color borderColor;
+  final Color color;
+  final TextStyle? style;
+  final MainAxisAlignment mainAxisAlignment;
+
+  SButton({
+    Key? key,
+    required this.text,
+    required this.onPress,
+    required this.image,
+    this.color = Colors.transparent,
+    this.borderColor = kSecondaryLightTextColor,
+    this.width = double.infinity,
+    this.height = 58,
+    this.borderRadius = 24,
+    this.borderThikness = 1,
+    this.style,
+    this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
+  }) : super(key: key);
+
+  late final border = BorderRadius.all(Radius.circular(borderRadius));
+  late final borderSide = Border.all(color: borderColor, width: borderThikness);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: border,
+      onTap: () {
+        onPress();
+      },
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(borderRadius),
+          border: borderSide,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Stack(
+            alignment: AlignmentDirectional.center,
+            children: [
+              Positioned(
+                left: 0,
+                child: Image.asset(
+                  image,
+                  height: 40,
+                ),
+              ),
+              // const Spacer(flex: 3),
+              Positioned(
+                child: Text(
+                  text,
+                  textAlign: TextAlign.center,
+                  style: style ??
+                      Theme.of(context)
+                          .textTheme
+                          .labelLarge!
+                          .copyWith(fontSize: 16),
+                ),
+              ),
+              // const Spacer(flex: 3),
+            ],
+          ),
         ),
       ),
     );
