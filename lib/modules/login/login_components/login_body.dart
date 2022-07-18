@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ui_design/modules/register/register_screen.dart';
-import 'package:ui_design/shared/components.dart';
 
-import '../../../shared/styles/colors.dart';
+import '../../../shared/components.dart';
+import '../../register/register_screen.dart';
 import 'login_form.dart';
 import 'other_logins.dart';
 import 'welcome_section.dart';
