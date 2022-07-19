@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../shared/components.dart';
+import '../../../shared/constants.dart';
 import '../../register/register_screen.dart';
 import 'login_form.dart';
 import 'other_logins.dart';
@@ -38,19 +39,21 @@ class LoginBody extends StatelessWidget {
                     "Don't Have an Account?",
                     style: Theme.of(context).textTheme.labelMedium,
                   ),
-                  CustomTextButton(
-                    onPress: () {
+                  AdaptiveTextButton(
+                    onPressed: () {
                       Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
                               builder: (_) => const RegisterScreen()),
                           (route) => false);
                     },
-                    text: " Sign Up",
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelMedium!
-                        .copyWith(color: Theme.of(context).primaryColor),
+                    text: "Sign Up",
+                    textStyle:
+                        Theme.of(context).textTheme.labelMedium!.copyWith(
+                              color: isIos
+                                  ? Colors.blue
+                                  : Theme.of(context).primaryColor,
+                            ),
                   ),
                 ],
               ),

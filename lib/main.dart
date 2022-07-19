@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ui_design/modules/welcome/welcome_screen.dart';
+import 'package:ui_design/modules/register/register_screen.dart';
 
 import 'shared/styles/theme.dart';
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.light,
-      home: const WelcomeScreen(),
+      home: const RegisterScreen(),
     );
   }
 }

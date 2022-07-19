@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../shared/components.dart';
@@ -39,19 +40,19 @@ class _LoginFormState extends State<LoginForm> {
       key: formKey,
       child: Column(
         children: [
-          DefaultFormField(
+          AdaptiveTextFormField(
             controller: emailController,
             hintText: "Email",
-            prefixIcon: Icons.email_outlined,
+            prefixIcon: isIos ? CupertinoIcons.mail : Icons.email_outlined,
             validator: (String? value) {
               return emailValidator(email: value!.trim());
             },
           ),
           const SizedBox(height: 19),
-          DefaultFormField(
+          AdaptiveTextFormField(
             controller: passwordController,
             hintText: "Password",
-            prefixIcon: Icons.lock_outline,
+            prefixIcon: isIos ? CupertinoIcons.lock : Icons.lock_outline,
             obscureText: true,
             isLastField: true,
             validator: (String? value) {
@@ -62,10 +63,12 @@ class _LoginFormState extends State<LoginForm> {
             },
           ),
           const SizedBox(height: 19),
-          CustomTextButton(
-            onPress: () {},
+          AdaptiveTextButton(
+            onPressed: () {},
             text: "Forgot Password?",
-            style: Theme.of(context).textTheme.labelLarge,
+            textStyle: Theme.of(context).textTheme.labelLarge!.copyWith(
+                  color: isIos ? Colors.blue : null,
+                ),
           ),
           const SizedBox(height: 19),
           PrimaryButton(
