@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../shared/components.dart';
+import '../../../shared/constants.dart';
 import '../../../shared/styles/colors.dart';
 import '../../login/login_screen.dart';
 import 'register_form.dart';
@@ -40,13 +41,14 @@ class RegisterBody extends StatelessWidget {
                 text: "Sign Up With Google",
                 icon: FontAwesomeIcons.google,
                 iconColor: Colors.red,
+                borderRadius: isIos ? 8 : 24,
                 onPress: () {},
               ),
               const SizedBox(height: 19),
               SocialButton.icon(
                 text: "Sign Up With Apple",
                 icon: FontAwesomeIcons.apple,
-                // iconColor: Colors.black,
+                borderRadius: isIos ? 8 : 24,
                 onPress: () {},
               ),
               const SizedBox(height: 19),
@@ -57,19 +59,21 @@ class RegisterBody extends StatelessWidget {
                     "Already Have an Account?",
                     style: Theme.of(context).textTheme.labelMedium,
                   ),
-                  CustomTextButton(
-                    onPress: () {
+                  AdaptiveTextButton(
+                    onPressed: () {
                       Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => const LoginScreen()),
+                            builder: (_) => const LoginScreen(),
+                          ),
                           (route) => false);
                     },
-                    text: " Sign In",
-                    style: Theme.of(context)
+                    text: "Sign In",
+                    textStyle: Theme.of(context)
                         .textTheme
                         .labelMedium!
-                        .copyWith(color: kPrimaryLightColor),
+                        .copyWith(
+                            color: isIos ? Colors.blue : kPrimaryLightColor),
                   ),
                 ],
               ),

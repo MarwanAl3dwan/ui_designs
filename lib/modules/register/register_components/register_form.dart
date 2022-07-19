@@ -43,7 +43,7 @@ class _RegisterFormState extends State<RegisterForm> {
       key: formKey,
       child: Column(
         children: [
-          DefaultFormField(
+          AdaptiveTextFormField(
             controller: emailController,
             hintText: "Email",
             prefixIcon: Icons.email_outlined,
@@ -52,7 +52,7 @@ class _RegisterFormState extends State<RegisterForm> {
             },
           ),
           const SizedBox(height: 19),
-          DefaultFormField(
+          AdaptiveTextFormField(
             controller: passwordController,
             hintText: "Password",
             prefixIcon: Icons.lock_outline,
@@ -62,7 +62,7 @@ class _RegisterFormState extends State<RegisterForm> {
             },
           ),
           const SizedBox(height: 19),
-          DefaultFormField(
+          AdaptiveTextFormField(
             controller: confirmPasswordController,
             hintText: "Confirm Password",
             prefixIcon: Icons.lock_outline,

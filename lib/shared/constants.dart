@@ -1,3 +1,5 @@
+import 'dart:io';
+
 bool isEmail({required String value}) {
   String email = value.trim();
   return email.endsWith("@gmail.com") ||
@@ -41,3 +43,6 @@ String? confirmPasswordValidator({
     return null;
   }
 }
+
+final bool isIos = Platform.operatingSystem == 'ios';
+// final bool isIos = true;

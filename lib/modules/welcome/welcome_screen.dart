@@ -68,6 +68,11 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30),
+                AdaptiveTextButton(
+                  text: "Button",
+                  onPressed: () {},
+                ),
+                const SizedBox(height: 30),
                 Expanded(
                   child: FadeInDown(
                     duration: duration,
